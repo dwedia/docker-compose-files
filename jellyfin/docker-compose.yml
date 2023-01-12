@@ -1,0 +1,23 @@
+# docker compose file for jellyfin
+# indent: 2 spaces
+
+---
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:latest
+    container_name: jellyfin
+    network_mode: bridge
+    enviroment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+    volumes:
+      - /opt/dockermnts/plex/config:/config
+      - /opt/mediafiles/movies:/movies
+      - /opt/mediafiles/tv:/tv
+    ports:
+     - 8096:8096
+     - 8920:8920
+     - 7359:7359/udp
+     - 1900:1900/udp
+    restart: unless-stopped
