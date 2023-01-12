@@ -1,0 +1,38 @@
+# docker-compose file for plex (example)
+# using 2 spaces as indent.
+---
+
+# define service running here
+services:
+  service-name: # the name of the service we are deploying (ie: ovpn, plex, or something else)
+    # for instance linuxserver/plex:latest or zabbix/zabbix-server-mysql:5.0-ubuntu-latest
+    image: provider/image:version
+
+    # Name of the container
+    container_name: name
+
+    # network_mode can be "host", "bridge", "overlay", "ipvlan", "macvlan", "none" read more here: https://docs.docker.com/network/
+    network_mode: bridge
+
+    # environment variables
+    environment:
+      # PUID is the user id that will own the files made by this container. if none is set, then root owns the files.
+      - PUID=1000
+      
+      # PGID is the group id that will own the files made by this container. if none is set, then root owns the files.
+      - PGID=1000
+
+      # this sets the timezone used inside the container.
+      - TZ=Europe/Copenhagen
+
+    # Volumes are where we map paths outside the container, to inside the container. they are defined as /outside:/inside.
+    volumes:
+      # This line maps the path: /path/on/host on the hosting server to the path /path/in/container inside the container.
+      - /path/on/host:/path/in/container
+
+    # Sets the restart policy of the container. This can be "no", "on failure", "always", "unless-stopped"
+    restart: unless-stopped
+
+    # used to map the port outside the container to the port inside the container. These do not need to be the same. We can map port 8008 to port 80 by typing 8008:80
+    ports:
+      - 8008:80

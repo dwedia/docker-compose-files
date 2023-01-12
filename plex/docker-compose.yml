@@ -1,0 +1,43 @@
+# docker-compose file for plex (example)
+# using 2 spaces as indent.
+---
+
+# define service running here
+services:
+  plex: # the name of the service we are deploying (ie: ovpn, plex, or something else)
+    # for instance linuxserver/plex:latest or zabbix/zabbix-server-mysql:5.0-ubuntu-latest
+    image: linuxserver/plex:amd64-1.28.2.6106-44a5bbd28-ls129
+
+    # Name of the container
+    container_name: plex
+
+    # network_mode can be "host", "bridge", "overlay", "ipvlan", "macvlan", "none" read more here: https://docs.docker.com/network/
+    network_mode: bridge
+
+    # environment variables
+    environment:
+      # PUID is the user id that will own the files made by this container. if none is set, then root owns the files.
+      - PUID=1000
+      # PGID is the group id that will own the files made by this container. if none is set, then root owns the files.
+      - PGID=1000
+      # Plex has different versions (standalone, docker, synology), we tell the compose file which version enviroment variable to define.
+      - VERSION=docker
+      # Plex Claim token, so the server will be claimed to the owning plex account.
+      - PLEX_CLAIM= #optional
+
+    # Volumes are where we map paths outside the container, to inside the container. they are defined as /outside:/inside.
+    volumes:
+      # This line maps the path: /opt/dockermnts/plex/config on the hosting server to the path /config inside the container.
+      - /opt/dockermnts/plex/config:/config
+
+      # This line maps the path: /mediafiles/tv on the hosting server to the path /tv inside the container.
+      - /mediafiles/tv:/tv
+
+      # This line maps the path: /mediafiles/movies on the hosting server to the path /movies inside the container.
+      - /mediafiles/movies:/movies
+
+    # Sets the restart policy of the container. This can be "no", "on failure", "always", "unless-stopped"
+    restart: unless-stopped
+
+    ports:
+      - 32400:32400
