@@ -1,0 +1,22 @@
+# docker-compose file for plex (example)
+# using 2 spaces as indent.
+---
+version: "3"
+
+services:
+
+  OVPN_Privoxy:
+    network_mode: bridge
+    restart: always
+    image: alturismo/ovpn_privoxy:latest
+    environment:
+      - LOCAL_NET=10.0.0.0/24
+      - OPENVPN_FILE=ovpnfile.ovpn
+    volumes:
+      - /opt/dockermnts/OVPN_Privoxy/config:/config:rw
+    cap_add:
+      - NET_ADMIN
+    dns: 1.1.1.1
+    privileged: true
+    ports:
+      - 8118:8080/tcp #containers own port
