@@ -1,9 +1,11 @@
 # docker-compose file for a service (example)
 # using 2 spaces as indent.
+
+# docker-compose file reference: https://docs.docker.com/compose/compose-file/compose-file-v3/
 ---
 
 # defines that this compose file uses docker-compose file format version 3.9
-version: 3.9 
+version: 3.9
 
 # Internal docker networks used by the services in this compose-file. This is the "top level networks key". Read more about networking in docker-compose here: https://docs.docker.com/compose/networking/.
 # This defaults to bridge networking, but can also be in overlay mode.
