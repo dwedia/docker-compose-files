@@ -1,16 +1,17 @@
 # docker-compose file for a yatch-arm64
 # using 2 spaces as indent.
 ---
-
-version: 3,8
-
+version: "3"
 services:
-  yatch:
-    image: selfhostedpro/yacht:latest
-    container_name: yatch
+  yacht:
+    container_name: yacht
     restart: unless-stopped
     ports:
       - 8000:8000
     volumes:
-      - /opt/dockermnts/yatch/config:/config
+      - yacht:/config
       - /var/run/docker.sock:/var/run/docker.sock
+    image: selfhostedpro/yacht
+
+volumes:
+  yacht:
