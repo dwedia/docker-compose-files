@@ -1,0 +1,48 @@
+# docker-compose file for plex (example)
+# using 2 spaces as indent.
+---
+version: "3"
+
+services:
+
+### gluetun ###
+  gluetun:
+    # container_name: gluetun
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /opt/dockermnts/gluetun/config:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - OPENVPN_USER=abc
+      - OPENVPN_PASSWORD=abc
+      - SERVER_REGIONS=Switzerland
+    ports:
+      - 8112:8112 # Deluge port
+      - 6881:6881 # Deluge port
+      - 6881:6881/udp # Deluge port
+
+
+### Deluge ###
+  deluge:
+    container_name: deluge
+    network_mode: "service: gluetun"
+    restart: unless-stopped
+    image: linuxserver/deluge:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+      - DELUGE_LOGLEVEL=error # optional
+    volumes:
+      - /opt/dockermnts/deluge/config:/config
+      - /netmounts/new/Torrents/Complete/:/complete
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+    depends_on:
+      - OVPN_Privoxy
