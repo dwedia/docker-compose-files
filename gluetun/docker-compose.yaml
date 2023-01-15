@@ -8,6 +8,7 @@ services:
 ### gluetun ###
   gluetun:
     # container_name: gluetun
+    image: qmcgaw/gluetun:latest
     restart: always
     cap_add:
       - NET_ADMIN
