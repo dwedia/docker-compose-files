@@ -10,4 +10,5 @@ services:
   ubuntu:
     image: ubuntu:latest
     container_name: ubuntu-latest
-    
+    stdin_open: true
+    tty: true

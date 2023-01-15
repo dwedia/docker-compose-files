@@ -81,3 +81,7 @@ services:
     # used to map the port outside the container to the port inside the container. These do not need to be the same. We can map port 8008 to port 80 by typing 8008:80
     ports:
       - 8008:80
+
+    # If we want the docker container to be interactable we need to attach stdin and stdout with these two flags. they are the same as using docker run -it
+    stdin_open: true
+    tty: true
