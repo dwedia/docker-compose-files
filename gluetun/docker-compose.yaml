@@ -41,9 +41,9 @@ services:
     volumes:
       - /opt/dockermnts/deluge/config:/config
       - /netmounts/new/Torrents/Complete/:/complete
-    ports:
-      - 8112:8112
-      - 6881:6881
-      - 6881:6881/udp
+    #ports:
+    #  - 8112:8112
+    #  - 6881:6881
+    #  - 6881:6881/udp
     depends_on:
       - gluetun
