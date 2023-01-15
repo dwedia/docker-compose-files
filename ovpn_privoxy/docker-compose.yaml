@@ -5,6 +5,7 @@ version: "3"
 
 services:
 
+### OVPN_Privoxy ###
   OVPN_Privoxy:
     network_mode: bridge
     restart: always
@@ -20,3 +21,25 @@ services:
     privileged: true
     ports:
       - 8118:8080/tcp #containers own port
+
+### Deluge ###
+  deluge:
+    container_name: deluge
+    network_mode: bridge
+    restart: unless-stopped
+    image: linuxserver/deluge:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+      - DELUGE_LOGLEVEL=error # optional
+    volumes:
+      - /opt/dockermnts/deluge/config:/config
+      - /netmounts/new/Torrents/Complete/:/complete
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+    depends_on:
+      - OVPN_Privoxy
+
