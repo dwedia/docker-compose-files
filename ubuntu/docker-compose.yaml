@@ -3,7 +3,6 @@
 
 # docker-compose file reference: https://docs.docker.com/compose/compose-file/compose-file-v3/
 ---
-version: "3.8" # defines that this compose file uses docker-compose file format version 3.8
 
 services:
 
