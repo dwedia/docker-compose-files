@@ -7,6 +7,7 @@ services:
 
 ### OVPN_Privoxy ###
   OVPN_Privoxy:
+    container_name: OVPN_Privoxy
     network_mode: bridge
     restart: always
     image: alturismo/ovpn_privoxy:latest
@@ -21,11 +22,12 @@ services:
     privileged: true
     ports:
       - 8118:8080/tcp #containers own port
+      - 8112:8112 # Deluge port
 
 ### Deluge ###
   deluge:
     container_name: deluge
-    network_mode: bridge
+    network_mode: "service: OVPN_Privoxy"
     restart: unless-stopped
     image: linuxserver/deluge:latest
     environment:
