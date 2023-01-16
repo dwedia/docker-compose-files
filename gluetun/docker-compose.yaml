@@ -25,6 +25,8 @@ services:
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
+    dns:
+      - 1.1.1.1
 
 
 
@@ -49,4 +51,6 @@ services:
     #  - 6881:6881/udp
     depends_on:
       - gluetun
+    dns:
+      - 1.1.1.1
 
