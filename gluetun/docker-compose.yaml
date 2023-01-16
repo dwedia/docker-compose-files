@@ -3,6 +3,10 @@
 ---
 version: "3"
 
+networks:
+  - downloadnet
+    - external: false
+
 services:
 
 ### gluetun ###
@@ -25,6 +29,8 @@ services:
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
+    networks:
+      - downloadnet
 
 
 ### Deluge ###
@@ -47,3 +53,5 @@ services:
     #  - 6881:6881/udp
     depends_on:
       - gluetun
+    networks:
+      - downloadnet
