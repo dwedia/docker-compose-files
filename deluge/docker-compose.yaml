@@ -10,7 +10,7 @@ services:
     container_name: deluge
     network_mode: bridge
     restart: unless-stopped
-    image: linuxserver/deluge:latest
+    image: linuxserver/deluge:2.0.5-r0-ls143
     environment:
       - PUID=1000
       - PGID=1000
