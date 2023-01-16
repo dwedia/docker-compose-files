@@ -3,10 +3,6 @@
 ---
 version: "3"
 
-networks:
-  downloadnet:
-    external: false
-
 services:
 
 ### gluetun ###
@@ -29,8 +25,7 @@ services:
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
-    networks:
-      - downloadnet
+
 
 
 ### Deluge ###
@@ -46,12 +41,12 @@ services:
       - DELUGE_LOGLEVEL=error # optional
     volumes:
       - /opt/dockermnts/deluge/config:/config
-      - /netmounts/new/Torrents/Complete/:/complete
+      #- /netmounts/new/Torrents/Complete/:/complete
+      - /completetest:/complete
     #ports:
     #  - 8112:8112
     #  - 6881:6881
     #  - 6881:6881/udp
     depends_on:
       - gluetun
-    networks:
-      - downloadnet
+
