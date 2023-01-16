@@ -18,8 +18,8 @@ services:
       - DELUGE_LOGLEVEL=error # optional
     volumes:
       - /opt/dockermnts/deluge/config:/config
-      #- /netmounts/new/Torrents/Complete/:/complete
-      - /completetest:/complete
+      #- /netmounts/new/Torrents/Complete/:/downloads
+      - /completetest:/downloads
     ports:
       - 8112:8112
       - 6881:6881
