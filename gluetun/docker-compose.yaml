@@ -5,9 +5,9 @@ version: "3"
 
 secrets:
   vpn_user:
-    file: ./vpnuser.txt
+    file: .vpnuser.txt
   vpn_pass:
-    file: ./vpnpass.txt
+    file: .vpnpass.txt
 
 services:
 
