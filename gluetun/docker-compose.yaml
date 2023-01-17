@@ -3,6 +3,12 @@
 ---
 version: "3"
 
+secrets:
+  vpn_user:
+    file: ./vpnuser.txt
+  vpn_pass:
+    file: ./vpnpass.txt
+
 services:
 
 ### gluetun ###
@@ -18,8 +24,8 @@ services:
       - /opt/dockermnts/gluetun/config:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
-      - OPENVPN_USER=abc
-      - OPENVPN_PASSWORD=abc
+      - OPENVPN_USER={{.secrets.vpn_user}}
+      - OPENVPN_PASSWORD={{.secrets.vpn_pass}}
       - SERVER_REGIONS=Switzerland
     ports:
       - 8112:8112 # Deluge port
