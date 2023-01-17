@@ -18,8 +18,8 @@ services:
       - /opt/dockermnts/gluetun/config:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
-      #- OPENVPN_USER=abc
-      #- OPENVPN_PASSWORD=abc
+      #- OPENVPN_USER=abc <-- in the secrets file
+      #- OPENVPN_PASSWORD=abc <-- in the secrets file
       - SERVER_REGIONS=Switzerland
     env_file:
       - secrets.txt
@@ -29,8 +29,6 @@ services:
       - 6881:6881/udp # Deluge port
     dns:
       - 1.1.1.1
-
-
 
 
 ### Deluge ###
@@ -45,8 +43,8 @@ services:
       - TZ=Europe/Copenhagen
       - DELUGE_LOGLEVEL=error # optional
     volumes:
-      - /opt/dockermnts/deluge/config:/config
-      #- /netmounts/new/Torrents/Complete/:/downloads
+      #- /opt/dockermnts/deluge/config:/config
+      - /netmounts/new/Torrents/Complete/:/downloads
       - /completetest:/downloads
     #ports:
     #  - 8112:8112
