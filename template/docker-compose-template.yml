@@ -70,6 +70,12 @@ services:
       # this sets the timezone used inside the container.
       - TZ=Europe/Copenhagen
 
+    # If we want to use secrets in this compose file (ie. login information), we can put this in a file outside the container, and pull it in with the env_file option
+    # if we want to have an environment variable named "username=myusername", then this is what we need to put in the secrets.txt file. We can have multiple variables in this file, as long as they are each on their own line.
+    env_file:
+      - secrets.txt
+
+
     # Volumes are where we map paths outside the container, to inside the container. they are defined as /outside:/inside.
     volumes:
       # This line maps the path: /path/on/host on the hosting server to the path /path/in/container inside the container.
