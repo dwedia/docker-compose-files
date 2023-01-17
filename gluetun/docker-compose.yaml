@@ -27,12 +27,16 @@ services:
       - OPENVPN_USER={{.secrets.vpn_user}}
       - OPENVPN_PASSWORD={{.secrets.vpn_pass}}
       - SERVER_REGIONS=Switzerland
+    secrets:
+     - vpn_user
+     - vpn_pass
     ports:
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
     dns:
       - 1.1.1.1
+
 
 
 
