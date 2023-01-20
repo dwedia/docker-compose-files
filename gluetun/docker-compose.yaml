@@ -1,4 +1,4 @@
-# docker-compose file for plex (example)
+# docker-compose file for my download stack
 # using 2 spaces as indent.
 ---
 version: "3"
