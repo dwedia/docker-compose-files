@@ -12,7 +12,7 @@ services:
     volumes:
       - /opt/dockermnts/radarr/config:/config
       - /netmounts/movies:/movies #optional
-      - # /path/to/downloadclient-downloads:/downloads #optional
+      #- /path/to/downloadclient-downloads:/downloads #optional
     ports:
       - 7878:7878
     restart: unless-stopped
