@@ -6,6 +6,7 @@ services:
   krusader:
     container_name: krusader
     restart: unless-stopped
+    image: ich777/krusader:latest
 
     environment:
       - PUID=1000
