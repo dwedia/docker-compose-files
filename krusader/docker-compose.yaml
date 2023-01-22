@@ -11,7 +11,7 @@ services:
       - PUID=1000
       - PGID=1000
       - UMASK=000
-      - USER_LOCALES=en_DK.UTF-8 UTF-8
+      - USER_LOCALES='en_DK.UTF-8 UTF-8'
       - CUSTOM_RES_W=1920
       - CUSTOM_RES_W=1080
 
