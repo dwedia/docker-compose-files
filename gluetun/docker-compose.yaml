@@ -68,9 +68,11 @@ services:
     volumes:
       - /opt/dockermnts/jackett/config:/config
       - /netmounts/new/Torrents/Incomplete/torrentfiles:/downloads
-    ports:
+    #ports:
       # - 9117:9117
     restart: unless-stopped
+    depends_on:
+      - gluetun
 
 ### Sonarr ###
   sonarr:
@@ -84,9 +86,11 @@ services:
       - /opt/dockermnts/sonarr/config:/config
       - /netmounts/tv:/tv #optional
       #- /path/to/downloadclient-downloads:/downloads #optional
-    ports:
-      #- 8989:8989
+    #ports:
+      # - 8989:8989
     restart: unless-stopped
+    depends_on:
+      - gluetun
 
 ### Radarr ###
   radarr:
@@ -100,7 +104,9 @@ services:
       - /opt/dockermnts/radarr/config:/config
       - /netmounts/movies:/movies #optional
       #- /path/to/downloadclient-downloads:/downloads #optional
-    ports:
-      #- 7878:7878
+    #ports:
+      # - 7878:7878
     restart: unless-stopped
+    depends_on:
+      - gluetun
 
