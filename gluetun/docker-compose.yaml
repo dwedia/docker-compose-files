@@ -27,7 +27,7 @@ services:
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
-      #- 9117:9117 # Jackett port
+      - 9117:9117 # Jackett port
       - 8989:8989 # Sonarr port
       - 7878:7878 # Radarr port
     dns:
@@ -58,6 +58,7 @@ services:
   jackett:
     image: lscr.io/linuxserver/jackett:latest
     container_name: jackett
+    network_mode: "service:gluetun"
     environment:
       - PUID=1000
       - PGID=1000
@@ -67,8 +68,8 @@ services:
     volumes:
       - /opt/dockermnts/jackett/config:/config
       - /netmounts/new/Torrents/Incomplete/torrentfiles:/downloads
-    ports:
-      - 9117:9117
+    #ports:
+    #  - 9117:9117
     restart: unless-stopped
     depends_on:
       - gluetun
@@ -77,6 +78,7 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    network_mode: "service:gluetun"
     environment:
       - PUID=1000
       - PGID=1000
@@ -95,6 +97,7 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
+    network_mode: "service:gluetun"
     environment:
       - PUID=1000
       - PGID=1000
