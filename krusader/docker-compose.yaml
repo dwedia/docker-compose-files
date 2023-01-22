@@ -7,7 +7,7 @@ services:
     container_name: krusader
     restart: unless-stopped
 
-    environments:
+    environment:
       - PUID=1000
       - PGID=1000
       - UMASK=000
