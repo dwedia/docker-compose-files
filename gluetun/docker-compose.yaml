@@ -45,9 +45,8 @@ services:
       - TZ=Europe/Copenhagen
       - DELUGE_LOGLEVEL=error # optional
     volumes:
-      #- /opt/dockermnts/deluge/config:/config
+      - /opt/dockermnts/deluge/config:/config
       - /netmounts/new/Torrents/Complete/:/downloads
-      - /completetest:/downloads
     #ports:
     #  - 8112:8112
     #  - 6881:6881
