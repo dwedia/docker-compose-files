@@ -28,6 +28,7 @@ services:
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
       - 9117:9117 # Jackett port
+      - 9696:9696 # Prowlarr port
       - 8989:8989 # Sonarr port
       - 7878:7878 # Radarr port
     dns:
@@ -73,6 +74,23 @@ services:
     restart: unless-stopped
     depends_on:
       - gluetun
+
+### Prowlarr ###
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /opt/dockermnts/prowlarr/config:/config
+    #ports:
+    #  - 9696:9696
+    restart: unless-stopped
+    depends_on:
+      - gluetun
+
 
 ### Sonarr ###
   sonarr:
