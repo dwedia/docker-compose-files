@@ -1,0 +1,20 @@
+# docker-compose file for SabNZBd
+# using 2 spaces as indent.
+
+---
+version: "2.1"
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /opt/dockermnts/sabnzbd/config:/config
+      - /netmounts/new/Complete:/downloads #optional
+      - /netmounts/new/Incomplete:/incomplete-downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped
