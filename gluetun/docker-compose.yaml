@@ -57,7 +57,7 @@ services:
 ### Deluge ###
   deluge:
     container_name: deluge
-
+    network_mode: "service:gluetun"
     restart: unless-stopped
     image: linuxserver/deluge:latest
     environment:
