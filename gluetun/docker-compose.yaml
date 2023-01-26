@@ -24,6 +24,7 @@ services:
     env_file:
       - secrets.txt
     ports:
+      - 8080:8080 # SabNZBd port
       - 8112:8112 # Deluge port
       - 6881:6881 # Deluge port
       - 6881:6881/udp # Deluge port
@@ -34,10 +35,29 @@ services:
     dns:
       - 1.1.1.1
 
+### SabNZBd ###
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /opt/dockermnts/sabnzbd/config:/config
+      - /netmounts/new/Complete:/downloads #optional
+      - /netmounts/new/Incomplete:/incomplete-downloads #optional
+    #ports:
+    #  - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - gluetun
+
 ### Deluge ###
   deluge:
     container_name: deluge
-    network_mode: "service:gluetun"
+
     restart: unless-stopped
     image: linuxserver/deluge:latest
     environment:
@@ -91,7 +111,6 @@ services:
     restart: unless-stopped
     depends_on:
       - gluetun
-
 
 ### Sonarr ###
   sonarr:
