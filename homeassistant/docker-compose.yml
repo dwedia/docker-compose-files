@@ -1,5 +1,7 @@
 # docker-compose file for home assistant core
 # using 2 spaces as indent.
+---
+version: "2.1"
 
 services:
   homeassistant:
