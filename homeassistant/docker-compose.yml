@@ -7,7 +7,7 @@ services:
   homeassistant:
     image: lscr.io/linuxserver/homeassistant:latest
     container_name: homeassistant
-    network_mode: host
+    network_mode: bridge
     environment:
       - PUID=1000
       - PGID=1000
@@ -15,6 +15,6 @@ services:
     volumes:
       - /opt/dockermnts/homeassistant/config:/config
       - /opt/dockermnts/homeassistant/backup:/backupfiles
-    ports:
-      - 8123:8123
+    #ports:
+    #  - 8123:8123
     restart: unless-stopped
