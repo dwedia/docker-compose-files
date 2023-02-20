@@ -1,0 +1,17 @@
+# docker-compose file for portainer
+# using 2 spaces as indent.
+
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/dockermnts/portainer-data:/data
+    ports:
+      - 9000:9000
+      - 9443:9443
