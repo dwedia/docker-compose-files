@@ -15,6 +15,6 @@ services:
     volumes:
       - /opt/dockermnts/homeassistant/config:/config
       - /opt/dockermnts/homeassistant/backup:/backupfiles
-    #ports:
-    #  - 8123:8123
+    ports:
+      - 8123:8123
     restart: unless-stopped
