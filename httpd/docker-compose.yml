@@ -1,0 +1,15 @@
+# docker-compose file for httpd (apache)
+# using 2 spaces as indent.
+
+---
+
+version: '3'
+services:
+  httpd:
+    image: httpd:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /opt/dockermnts/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - /opt/dockermnts/apache/html:/usr/local/apache2/htdocs/:ro
+    restart: unless-stopped
