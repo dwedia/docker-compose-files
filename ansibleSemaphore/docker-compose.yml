@@ -1,0 +1,14 @@
+services:
+  semaphore:
+    ports:
+      - 3000:3000
+    image: semaphoreui/semaphore:latest
+    environment:
+      SEMAPHORE_DB_DIALECT: bolt
+      SEMAPHORE_ADMIN_PASSWORD: Pamphlet-Gossip-Angular2-Icy-Endnote
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: admin@localhost
+      SEMAPHORE_ADMIN: admin
+    volumes:
+      - /opt/dockermnts/semaphore/home:/etc/semaphore # config.json location
+      - /opt/dockermnts/semaphore/lib:/var/lib/semaphore # database.boltdb location (Not required if using mysql or postgres)
