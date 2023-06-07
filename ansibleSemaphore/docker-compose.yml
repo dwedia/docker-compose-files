@@ -25,7 +25,7 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
       MYSQL_DATABASE: semaphore
       MYSQL_USER: semaphore
-      MYSQL_PASSWORD: semaphore
+      MYSQL_PASSWORD: Prodigy-Calm-Repose-Overwrite5-Sector
 
   semaphore:
     restart: unless-stopped
@@ -34,7 +34,7 @@ services:
     image: semaphoreui/semaphore:latest
     environment:
       SEMAPHORE_DB_USER: semaphore
-      SEMAPHORE_DB_PASS: semaphore
+      SEMAPHORE_DB_PASS: Prodigy-Calm-Repose-Overwrite5-Sector
       SEMAPHORE_DB_HOST: mysql # for postgres, change to: postgres
       SEMAPHORE_DB_PORT: 3306 # change to 5432 for postgres
       SEMAPHORE_DB_DIALECT: mysql
@@ -44,7 +44,7 @@ services:
       SEMAPHORE_ADMIN_NAME: admin
       SEMAPHORE_ADMIN_EMAIL: admin@localhost
       SEMAPHORE_ADMIN: admin
-      SEMAPHORE_ACCESS_KEY_ENCRYPTION: gs72mPntFATGJs9qK0pQ0rKtfidlexiMjYCH9gWKhTU=
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: 1OoCOeG/EJzI9tErVW8aUxqruqsj4GAvLu1CjPisDhQ=
       SEMAPHORE_LDAP_ACTIVATED: 'no' # if you wish to use ldap, set to: 'yes' 
       SEMAPHORE_LDAP_HOST: dc01.local.example.com
       SEMAPHORE_LDAP_PORT: '636'
