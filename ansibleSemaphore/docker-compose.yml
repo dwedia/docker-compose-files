@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  mysql:
+    ports:
+      - 3306:3306
+    image: mysql:5.6
+    container_name: mysql
+    hostname: mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: semaphore_db
+      MYSQL_USER: semaphore_user
+      MYSQL_PASSWORD: pidFiaNgveKtZ28DNoKxtLAKgP5YVA
+
+  semaphore:
+    ports:
+      - 3000:3000
+    image: ansiblesemaphore/semaphore:latest
+    container_name: semaphore
+    environment:
+      SEMAPHORE_DB_USER: semaphore_user
+      SEMAPHORE_DB_PASS: pidFiaNgveKtZ28DNoKxtLAKgP5YVA
+      SEMAPHORE_DB_HOST: mysql
+      SEMAPHORE_DB_PORT: 3306
+      SEMAPHORE_DB: semaphore_db
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
+      SEMAPHORE_ADMIN_PASSWORD: 4ZC6HLE3iKUmZLWDpR7Lx3iBkAWb3Q
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: admin@computingforgeeks.com
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: tssiw7EbgP27WToFyqKMnKWtsobB26cP68MmGHwXPF8=
+    depends_on:
+      - mysql
