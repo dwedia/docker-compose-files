@@ -20,7 +20,8 @@ services:
       - VPN_SERVICE_PROVIDER=nordvpn
       #- OPENVPN_USER=abc <-- in the secrets file
       #- OPENVPN_PASSWORD=abc <-- in the secrets file
-      - SERVER_REGIONS=Switzerland
+      # - SERVER_REGIONS=Switzerland
+      - SERVER_CONTRIES=Switzerland
     env_file:
       - secrets.txt
     ports:
