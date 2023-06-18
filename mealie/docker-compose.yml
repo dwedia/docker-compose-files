@@ -1,0 +1,28 @@
+# docker-compose file for my download stack
+# using 2 spaces as indent.
+---
+
+services:
+  mealie:
+    container_name: mealie
+    restart: unless-stopped
+    image: hkotel/mealie:latest
+
+    ports:
+      - 9925:80
+    
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Copenhagen
+
+      # Default Recipe Settings:
+      RECIPE_PUBLIC: 'true'
+      RECIPE_SHOW_NUTRITION: 'true'
+      RECIPE_SHOW_ASSETS: 'true'
+      RECIPE_LANDSCAPE_VIEW: 'true'
+      RECIPE_DISABLE_COMMENTS: 'false'
+      RECIPE_DISABLE_AMOUNT: 'false'
+
+    volumes:
+      - /opt/dockermnts/mealie/:/app/data
