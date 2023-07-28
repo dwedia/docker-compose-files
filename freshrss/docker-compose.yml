@@ -11,5 +11,5 @@ services:
     volumes:
       - /opt/dockermnts/freshrss/config:/config
     ports:
-      - 80:80
+      - 8070:80
     restart: unless-stopped
