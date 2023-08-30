@@ -10,7 +10,7 @@ services:
       - serve
     environment:
       - TZ=Europe/Copenhagen    # optional: set desired timezone
-    user: UID:GID # optional: replace with your own user/group or uid/gid
+    #user: UID:GID # optional: replace with your own user/group or uid/gid
     volumes:
       - /opt/dockermnts/ntfy/cache:/var/cache/ntfy
       - /opt/dockermnts/ntfy/config:/etc/ntfy
