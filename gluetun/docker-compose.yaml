@@ -44,7 +44,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/copenhagen
     volumes:
       - /opt/dockermnts/sabnzbd/config:/config
       - /netmounts/new/Complete:/downloads #optional
@@ -84,7 +84,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Copenhagen
       - AUTO_UPDATE=true #optional
       - RUN_OPTS=<run options here> #optional
     volumes:
@@ -104,7 +104,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Copenhagen
     volumes:
       - /opt/dockermnts/prowlarr/config:/config
     #ports:
@@ -121,7 +121,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Copenhagen
     volumes:
       - /opt/dockermnts/sonarr/config:/config
       - /netmounts/tv:/tv #optional
@@ -140,7 +140,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Copenhagen
     volumes:
       - /opt/dockermnts/radarr/config:/config
       - /netmounts/movies:/movies #optional
