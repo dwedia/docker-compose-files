@@ -15,5 +15,5 @@ services:
       - /opt/dockermnts/ntfy/cache:/var/cache/ntfy
       - /opt/dockermnts/ntfy/config:/etc/ntfy
     ports:
-      - 8070:80
+      - 8060:80
     restart: unless-stopped
