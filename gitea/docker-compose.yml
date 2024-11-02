@@ -40,3 +40,16 @@ services:
       - gitea
     volumes:
       - /opt/gitea/postgres:/var/lib/postgresql/data:Z
+
+    runner:
+      image: gitea/act_runner:nightly
+      environment:
+        CONFIG_FILE: /config.yaml
+        GITEA_INSTANCE_URL: "${INSTANCE_URL}"
+        GITEA_RUNNER_REGISTRATION_TOKEN: "${REGISTRATION_TOKEN}"
+        GITEA_RUNNER_NAME: "${RUNNER_NAME}"
+        # GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
+      volumes:
+        - ./config.yaml:/config.yaml
+        - ./data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
