@@ -55,6 +55,6 @@ services:
     networks:
       - gitea
     volumes:
-      - /opt/gitea/runner/config.yaml:/config/config.yaml:Z
+      - /opt/gitea/runner/config/:/config/config:Z
       - /opt/gitea/runner/data:/data:Z
       - /var/run/docker.sock:/var/run/docker.sock
