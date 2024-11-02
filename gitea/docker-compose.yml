@@ -49,6 +49,9 @@ services:
         GITEA_RUNNER_REGISTRATION_TOKEN: "${REGISTRATION_TOKEN}"
         GITEA_RUNNER_NAME: "${RUNNER_NAME}"
         # GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
+      depends_on:
+        - server
+        - db
       volumes:
         - ./config.yaml:/config.yaml
         - ./data:/data
