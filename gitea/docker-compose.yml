@@ -44,7 +44,7 @@ services:
   runner:
     image: gitea/act_runner:nightly
     environment:
-      CONFIG_FILE: /config.yaml
+      CONFIG_FILE: /config/config.yaml
       GITEA_INSTANCE_URL: "${INSTANCE_URL}"
       GITEA_RUNNER_REGISTRATION_TOKEN: "${REGISTRATION_TOKEN}"
       GITEA_RUNNER_NAME: "${RUNNER_NAME}"
@@ -55,6 +55,6 @@ services:
     networks:
       - gitea
     volumes:
-      - /opt/gitea/runner/config.yaml:/config.yaml:Z
+      - /opt/gitea/runner/config.yaml:/config/config.yaml:Z
       - /opt/gitea/runner/data:/data:Z
       - /var/run/docker.sock:/var/run/docker.sock
