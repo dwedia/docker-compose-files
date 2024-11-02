@@ -20,7 +20,7 @@ services:
     networks:
       - gitea
     volumes:
-      - /data/gitea/persistent_data/gitea:/data:Z
+      - /opt/gitea/gitea:/data:Z
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -39,4 +39,4 @@ services:
     networks:
       - gitea
     volumes:
-      - /data/gitea/persistent_data/postgres:/var/lib/postgresql/data:Z
+      - /opt/gitea/postgres:/var/lib/postgresql/data:Z
