@@ -52,6 +52,8 @@ services:
     depends_on:
       - server
       - db
+    networks:
+      - gitea
     volumes:
       - /opt/gitea/runner/config.yaml:/config.yaml:Z
       - /opt/gitea/runner/data:/data:Z
