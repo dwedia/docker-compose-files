@@ -12,10 +12,10 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - GITEA__database__DB_TYPE=postgres
-      - GITEA__database__HOST=db:5432
+      - GITEA__database__HOST=${giteaDBPort}
       - GITEA__database__NAME=gitea
-      - GITEA__database__USER=gitea
-      - GITEA__database__PASSWD=cX38V35GEx2KbmhNfQjC
+      - GITEA__database__USER=${giteaDBUserName}
+      - GITEA__database__PASSWD=${giteaDBUserPass}
     restart: always
     networks:
       - gitea
@@ -33,8 +33,8 @@ services:
     image: postgres:14
     restart: always
     environment:
-      - POSTGRES_USER=gitea
-      - POSTGRES_PASSWORD=cX38V35GEx2KbmhNfQjC
+      - POSTGRES_USER=${giteaDBUserName}
+      - POSTGRES_PASSWORD=${giteaDBUserPass}
       - POSTGRES_DB=gitea
     networks:
       - gitea
