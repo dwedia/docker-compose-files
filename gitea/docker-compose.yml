@@ -53,6 +53,6 @@ services:
         - server
         - db
       volumes:
-        - /opt/gitea/runner/config.yaml:/config.yaml
-        - /opt/gitea/runner/data:/data
+        - /opt/gitea/runner/config.yaml:/config.yaml:Z
+        - /opt/gitea/runner/data:/data:Z
         - /var/run/docker.sock:/var/run/docker.sock
