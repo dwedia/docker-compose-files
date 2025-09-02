@@ -8,6 +8,6 @@ services:
       - /path/to/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: homepage.dragonflight.dk:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_ALLOWED_HOSTS: dockerlxc.dragonflight.dk:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
       PUID: $PUID
       PGID: $PGID
