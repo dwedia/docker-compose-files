@@ -1,0 +1,117 @@
+---
+version: "3.9"
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    restart: unless-stopped
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    device:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /opt/podmnts/gluetun/config:/gluetun:Z
+    environment:
+      - VPN_SERVICE_PROVIDER=private internet access
+      - SERVER_CONTRIES=Switzerland
+      - TZ=Europe/Copenhagen
+      - DELUGE_LOGLEVEL=error
+    env_file: secrets.txt
+    ports:
+      - 8112:8112
+      - 6881:6881/udp
+      - 6881:6881
+      - 8080:8080
+      - 9696:9696
+      - 8989:8989
+      - 7878:7878
+    dns:
+      - 1.1.1.1
+
+  deluge:
+    image: linuxserver/deluge:latest
+    container_name: deluge
+    #pod: vpnStack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+      - DELUGE_LOGLEVEL=error
+    volumes:
+      - /opt/podmnts/deluge/config:/config:Z
+      - /opt/netmounts/new/Torrents/Complete/:/downloads
+      - /opt/netmounts/new/Torrents/Incomplete/:/Incomplete
+    depends_on:
+      - gluetun
+    #ports:
+    #  - 8112:8112
+    #  - 6881:6881/udp
+    #  - 6881:6881
+    network_mode: "container:gluetun"
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    #pod: vpnStack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+    volumes:
+      - /opt/podmnts/sabnzbd/config:/config:Z
+      - /opt/netmounts/new/Complete:/downloads
+      - /opt/netmounts/new/Incomplete:/incomplete-downloads
+    depends_on:
+      - gluetun
+    network_mode: "container:gluetun"
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    #pod: vpnStack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+    volumes:
+      - /opt/podmnts/prowlarr/config:/config:Z
+    depends_on:
+      - gluetun
+    network_mode: "container:gluetun"
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    #pod: vpnStack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+    volumes:
+      - /opt/podmnts/sonarr/config:/config:Z
+      - /opt/netmounts/tv:/tv
+    depends_on:
+      - gluetun
+    network_mode: "container:gluetun"
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    #pod: vpnStack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+    volumes:
+      - /opt/podmnts/radarr/config:/config:Z
+      - /opt/netmounts/movies:/movies
+    depends_on:
+      - gluetun
+    network_mode: "container:gluetun"
