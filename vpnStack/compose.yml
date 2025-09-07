@@ -9,7 +9,7 @@ services:
     privileged: true
     cap_add:
       - NET_ADMIN
-    device:
+    devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
       - /opt/podmnts/gluetun/config:/gluetun:Z
