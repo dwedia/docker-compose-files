@@ -12,7 +12,7 @@ services:
       - /opt/persistentStorage/StirlingPDF/logs:/logs/
       - /opt/persistentStorage/StirlingPDF/pipeline:/pipeline/
     environment:
-      - DISABLE_ADDITIONAL_FEATURES=false
+      - DISABLE_ADDITIONAL_FEATURES=true
       - LANGS=en_GB
       - UI_APPNAME=Stirling PDF
       - UI_HOMEDESCRIPTION=Your locally hosted one-stop-shop for all your PDF needs.
