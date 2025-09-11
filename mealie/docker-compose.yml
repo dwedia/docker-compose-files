@@ -25,4 +25,4 @@ services:
       RECIPE_DISABLE_AMOUNT: 'false'
 
     volumes:
-      - /opt/dockermnts/mealie/:/app/data
+      - /opt/persistentStorage/mealie/:/app/data
