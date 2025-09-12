@@ -9,7 +9,7 @@ services:
     image: hkotel/mealie:latest
 
     ports:
-      - 9925:80
+      - 9000:9000
     
     environment:
       PUID: 1000
