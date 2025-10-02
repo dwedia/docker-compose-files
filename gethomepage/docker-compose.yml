@@ -1,8 +1,5 @@
 services:
 
-  volumes:
-    gethomepage-config:
-
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -16,3 +13,8 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: laptopserver.dragonflight.dk:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
       PUID: 1000
       PGID: 1000
+
+
+volumes:
+  gethomepage-config:
+
