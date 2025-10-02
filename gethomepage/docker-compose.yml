@@ -1,4 +1,8 @@
 services:
+
+  volumes:
+    gethomepage-config:
+
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -6,9 +10,9 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - /opt/persistentStorage/gethomepage/config:/app/config # Make sure your local config directory exists
+      - gethomepage-config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: dockerlxc.dragonflight.dk:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_ALLOWED_HOSTS: laptopserver.dragonflight.dk:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
       PUID: 1000
       PGID: 1000
