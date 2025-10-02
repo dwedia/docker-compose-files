@@ -25,4 +25,7 @@ services:
       RECIPE_DISABLE_AMOUNT: 'false'
 
     volumes:
-      - /opt/persistentStorage/mealie/:/app/data
+      - appdata:/app/data
+
+volumes:
+      appdata:
