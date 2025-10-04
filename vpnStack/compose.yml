@@ -1,5 +1,5 @@
 ---
-version: "3.9"
+# version: "3.9"
 
 services:
   gluetun:
@@ -12,7 +12,7 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
-      - /opt/podmnts/gluetun/config:/gluetun:Z
+      - gluetun-config:/gluetun:Z
     environment:
       - VPN_SERVICE_PROVIDER=private internet access
       - SERVER_CONTRIES=Switzerland
@@ -41,7 +41,7 @@ services:
       - TZ=Europe/Copenhagen
       - DELUGE_LOGLEVEL=error
     volumes:
-      - /opt/podmnts/deluge/config:/config:Z
+      - deluge-config:/config:Z
       - /opt/netmounts/new/Torrents/Complete/:/downloads
       - /opt/netmounts/new/Torrents/Incomplete/:/Incomplete
     depends_on:
@@ -62,7 +62,7 @@ services:
       - PGID=1000
       - TZ=Europe/Copenhagen
     volumes:
-      - /opt/podmnts/sabnzbd/config:/config:Z
+      - sabnzbd-config:/config:Z
       - /opt/netmounts/new/Complete:/downloads
       - /opt/netmounts/new/Incomplete:/incomplete-downloads
     depends_on:
@@ -79,7 +79,7 @@ services:
       - PGID=1000
       - TZ=Europe/Copenhagen
     volumes:
-      - /opt/podmnts/prowlarr/config:/config:Z
+      - prowlarr-config:/config:Z
     depends_on:
       - gluetun
     network_mode: "container:gluetun"
@@ -94,7 +94,7 @@ services:
       - PGID=1000
       - TZ=Europe/Copenhagen
     volumes:
-      - /opt/podmnts/sonarr/config:/config:Z
+      - sonarr-config:/config:Z
       - /opt/netmounts/tv:/tv
     depends_on:
       - gluetun
@@ -110,8 +110,16 @@ services:
       - PGID=1000
       - TZ=Europe/Copenhagen
     volumes:
-      - /opt/podmnts/radarr/config:/config:Z
+      - radarr-config:/config:Z
       - /opt/netmounts/movies:/movies
     depends_on:
       - gluetun
     network_mode: "container:gluetun"
+
+volumes:
+  config:
+  deluge-config:
+  sabnzbd-config:
+  prowlarr-config:
+  sonarr-config:
+  radarr-config:
